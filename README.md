@@ -1,7 +1,7 @@
 arcs
 ====
 
-A snazzy clock drawn with GDIP arcs
+A snazzy clock drawn with GDIP arcs. View screenshots of funky schemes [here](imgur.com/a/xKyUg)!
 
 Unofficial standalone version of [Enigma Arcs by Kaelri](enigma.kaelri.com/downloads)
 
