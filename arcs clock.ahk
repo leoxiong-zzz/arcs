@@ -4,7 +4,8 @@
 SetBatchLines, -1
 
 ;Gdip initialization
-Gui, -Caption +E0x80000 +Hwndhwnd +ToolWindow
+Gui, -Caption +E0x80000 +Hwndhwnd +LastFound +ToolWindow
+DllCall("SetParent", "UInt", WinExist(), "UInt", DllCall("GetShellWindow"))
 Gui, Show, NoActivate
 
 pToken := Gdip_Startup()
