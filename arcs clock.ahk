@@ -203,7 +203,4 @@ Gdip_DeleteGraphics(G)
 Gdip_Shutdown(pToken)
 ExitApp
 
-return
-#c::WinActivate, ahk_id %hwnd%
-
 ;#Include Gdip.ahk
