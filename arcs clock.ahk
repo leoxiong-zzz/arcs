@@ -124,7 +124,7 @@ Loop, % decodeInteger(&pIfTable)
     down += decodeInteger((t := (&pIfTable + 860 * (A_Index - 1))) + 556), up += decodeInteger(t + 580)
 downRate := (down - down2) / 1024, upRate := (up - up2) / 1024
 down2 := down, up2 := up, down := 0, up := 0
-Gdip_DrawArc(pGraphics, pColor1_5, 140, 140, 150, 150, 0, -(downRate > 255 ? 255 : downRate) / 255 * 32)
+Gdip_DrawArc(pGraphics, pColor1_5, 140, 140, 150, 150, 0, -(downRate > 255 ? 255 : downRate) * 0.1254901961)
 Gdip_DrawArc(pGraphics, pColor1_5, 134, 134, 162, 162, 0, -(upRate > 255 ? 255 : upRate) * 0.1254901961)
 
 ;Arcs for CPU and RAM
