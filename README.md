@@ -5,4 +5,4 @@ A snazzy clock drawn with GDIP arcs. View screenshots of funky schemes [here](ht
 
 Unofficial standalone version of [Enigma Arcs by Kaelri](http://enigma.kaelri.com/downloads)
 
-![Arcs](https://raw.github.com/NameLess-exe/arcs/master/screenshots/JRS7U.jpg)
+![Arcs](https://raw.github.com/NameLess-exe/arcs/master/screenshots/arcs%20legend.png)
