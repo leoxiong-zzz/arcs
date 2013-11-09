@@ -5,8 +5,15 @@ SetBatchLines, -1
 
 ;Gdip initialization
 Gui, -Caption +E0x80000 +Hwndhwnd +LastFound +ToolWindow
-DllCall("SetParent", "UInt", WinExist(), "UInt", DllCall("GetShellWindow"))
 Gui, Show, NoActivate
+
+;Initiate menu
+if (FileExist("options.ini"))
+    Menu, Context, Add, Options
+Menu, Context, Add, GitHub
+Menu, Context, Add
+Menu, Context, Add, Reload
+Menu, Context, Add, Exit
 
 pToken := Gdip_Startup()
 hbm := CreateDIBSection(430, 430)
@@ -16,6 +23,12 @@ pGraphics := Gdip_GraphicsFromHDC(hdc)
 
 Gdip_SetSmoothingMode(pGraphics, 4) ;Anti-aliasing
 
+;Pin to desktop
+IniRead, pinToDesktop, options.ini, misc, pintodesktop, 1
+if (pinToDesktop)
+    DllCall("SetParent", "UInt", hwnd, "UInt", DllCall("GetShellWindow"))
+
+;Update speed
 IniRead, interval, options.ini, misc, updatespeed, 300
 
 ;Window position
@@ -181,20 +194,34 @@ decodeInteger(ptr)
 WM_LBUTTONDOWN(wParam, lParam){
     PostMessage, 0xA1, 2
 }
-WM_MBUTTONDOWN(wParam, lParam){
-    ExitApp
-}
 WM_MOVE(wParam, lParam){
     WinGetPos, x, y
     IniWrite, %x%, options.ini, position, x
     IniWrite, %y%, options.ini,position, y
 }
 WM_RBUTTONDOWN(wParam, lParam){
-    Reload
+    Menu, Context, Show
 }
 
 return
-exit:
+;Open options.ini or prompt to download if not exist
+Options:
+if (FileExist("options.ini"))
+    Run, notepad options.ini
+
+return
+;Visit project page on GitHub
+GitHub:
+Run, https://github.com/NameLess-exe/arcs
+
+return
+;Reload
+Reload:
+Reload
+
+return
+;ExitApp
+Exit:
 GuiClose:
 SelectObject(hdc, obm)
 DeleteObject(hbm)
